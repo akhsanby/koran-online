@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import NewsCard from "../components/NewsCard";
 
-export default function Home() {
+export default function Covid19() {
   return (
     <Layout>
       <div>
