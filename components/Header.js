@@ -9,7 +9,7 @@ import {
   YoutubeIcon,
 } from "./icon";
 
-export default function Header() {
+export default function Header({navs}) {
   return (
     <>
       <header className="bg-black text-white">
@@ -33,7 +33,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <nav className="bg-white sticky top-0">
+      <nav className="bg-white sticky top-0 z-50 shadow-lg">
         <div className="w-11/12 mx-auto flex items-center">
           <div className="flex-1 h-full flex items-center">
             <MenuIcon />
@@ -65,30 +65,3 @@ export default function Header() {
     </>
   );
 }
-
-const navs = [
-  {
-    text: "indonesia",
-    link: "/",
-  },
-  {
-    text: "programming",
-    link: "/programming",
-  },
-  {
-    text: "covid19",
-    link: "/covid19",
-  },
-  {
-    text: "entertainment",
-    link: "/entertainment",
-  },
-  {
-    text: "politics",
-    link: "/politics",
-  },
-  {
-    text: "saved",
-    link: "/saved",
-  },
-];
