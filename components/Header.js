@@ -42,7 +42,7 @@ export default function Header() {
             {navs.map((nav, i) => (
               <li key={i}>
                 <Link href={nav.link}>
-                  <a className="uppercase py-2 block text-gray-600 border-b-4 border-transparent hover:border-green-300 oswald">
+                  <a className="uppercase pt-3 pb-1 block text-gray-600 border-b-4 border-transparent hover:border-green-300 oswald">
                     {nav.text}
                   </a>
                 </Link>
