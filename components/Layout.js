@@ -8,9 +8,9 @@ export default function Layout({ children }) {
       <Header navs={navs} />
       <div className="w-11/12 mx-auto mt-2 mb-10 flex space-x-6">
         <main className="flex-[3]">{children}</main>
-        <div className="flex-1 mt-10">
+        <aside className="flex-1 mt-10">
           <HotNews />
-        </div>
+        </aside>
       </div>
       <Footer navs={navs} />
     </div>

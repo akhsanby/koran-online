@@ -32,9 +32,11 @@ export default function Header({ navs }) {
           </Link>
           <div className="flex-1 flex items-center justify-end space-x-2">
             <BookmarkIcon />
-            <span className="h-[22px] w-[22px] text-[10px] font-semibold grid place-items-center bg-gray-700 rounded-full">
-              10
-            </span>
+            <Link href="/saved">
+              <a className="h-[22px] w-[22px] text-[10px] font-semibold grid place-items-center bg-gray-700 hover:bg-green-400 duration-300 rounded-full">
+                10
+              </a>
+            </Link>
           </div>
         </div>
       </header>
