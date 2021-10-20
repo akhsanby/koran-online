@@ -12,28 +12,29 @@ import {
 
 export default function Footer({ navs }) {
   return (
-    <footer className="bg-gray-900 flex flex-col items-center">
+    <footer className="bg-[#111111] flex flex-col items-center">
       <Link href="/">
         <a className="flex-[3] text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">
           koran online
         </a>
       </Link>
       <div className="space-x-3 flex my-6 text-white">
-        <FacebookIcon />
-        <TwitterIcon />
-        <PinterestIcon />
-        <InstagramIcon />
-        <TiktokIcon />
-        <YoutubeIcon />
-        <LinkedInIcon />
-        <TumblrIcon />
+        {socialMedias.map((e, i) => (
+          <a
+            key={i}
+            href="#"
+            className={`${e.color} rounded-full bg-gray-700 h-10 w-10 flex items-center justify-center duration-150`}
+          >
+            {e.icon}
+          </a>
+        ))}
       </div>
       <nav className="mb-10">
         <ul className="flex space-x-5">
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
-                <a className="uppercase font-thin text-sm pt-3 pb-1 block text-gray-400 border-b-4 border-transparent hover:text-white duration-300 oswald">
+                <a className="uppercase font-thin tracking-wider text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
                   {nav.text}
                 </a>
               </Link>
@@ -47,3 +48,46 @@ export default function Footer({ navs }) {
     </footer>
   );
 }
+
+const socialMedias = [
+  {
+    name: "facebook",
+    icon: <FacebookIcon />,
+    color: "hover:bg-[#3b5998]",
+  },
+  {
+    name: "twitter",
+    icon: <TwitterIcon />,
+    color: "hover:bg-[#00acee]",
+  },
+  {
+    name: "pinterest",
+    icon: <PinterestIcon />,
+    color: "hover:bg-[#c8232c]",
+  },
+  {
+    name: "instagram",
+    icon: <InstagramIcon />,
+    color: "instagram-color",
+  },
+  {
+    name: "tiktok",
+    icon: <TiktokIcon />,
+    color: "hover:bg-[#000]",
+  },
+  {
+    name: "youtube",
+    icon: <YoutubeIcon />,
+    color: "hover:bg-[#FF0000]",
+  },
+  {
+    name: "linkedIn",
+    icon: <LinkedInIcon />,
+    color: "hover:bg-[#0077b5]",
+  },
+  {
+    name: "tumblr",
+    icon: <TumblrIcon />,
+    color: "hover:bg-[#34526f]",
+  },
+];
