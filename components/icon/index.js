@@ -5,6 +5,8 @@ import Instagram from "./Instagram";
 import Twitter from "./Twitter";
 import Youtube from "./Youtube";
 import Bookmark from "./Bookmark";
+import Mail from "./Mail";
+import Whatsapp from "./Whatsapp";
 import Pinterest from "./Pinterest";
 import Tumblr from "./Tumblr";
 import Tiktok from "./Tiktok";
@@ -21,5 +23,7 @@ export {
   Tiktok as TiktokIcon,
   Tumblr as TumblrIcon,
   Pinterest as PinterestIcon,
+  Whatsapp as WhatsappIcon,
+  Mail as MailIcon,
   Bookmark as BookmarkIcon,
 };
