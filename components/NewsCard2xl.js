@@ -10,7 +10,7 @@ export default function NewsCard2xl() {
         src="https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"
         className="group-hover:opacity-80 duration-300"
       />
-      <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black">
+      <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black via-gray-900/75">
         <p className="font-extrabold uppercase text-sm mt-2 text-green-400">
           Programming{" "}
           <span className="font-medium lowercase text-white">

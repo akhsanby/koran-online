@@ -10,7 +10,7 @@ import {
   YoutubeIcon,
 } from "./icon";
 
-export default function Footer({ navs }) {
+export default function Footer() {
   return (
     <footer className="bg-[#111111] flex flex-col items-center">
       <Link href="/">
@@ -89,5 +89,36 @@ const socialMedias = [
     name: "tumblr",
     icon: <TumblrIcon />,
     color: "hover:bg-[#34526f]",
+  },
+];
+
+const navs = [
+  {
+    text: "indonesia",
+    link: "/",
+  },
+  {
+    text: "programming",
+    link: "/programming",
+  },
+  {
+    text: "covid19",
+    link: "/covid19",
+  },
+  {
+    text: "entertainment",
+    link: "#",
+  },
+  {
+    text: "politics",
+    link: "#",
+  },
+  {
+    text: "tech",
+    link: "#",
+  },
+  {
+    text: "saved",
+    link: "/saved",
   },
 ];
