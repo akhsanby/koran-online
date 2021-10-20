@@ -9,16 +9,21 @@ import {
   YoutubeIcon,
 } from "./icon";
 
-export default function Header({navs}) {
+export default function Header({ navs }) {
   return (
     <>
       <header className="bg-black text-white">
         <div className=" flex py-4 mx-auto w-11/12">
           <div className="flex items-center flex-1 space-x-3">
-            <FacebookIcon />
-            <TwitterIcon />
-            <InstagramIcon />
-            <YoutubeIcon />
+            {socialMedias.map((e, i) => (
+              <a
+                key={i}
+                href="#"
+                className={`${e.color} rounded-full bg-gray-800 h-10 w-10 flex items-center justify-center duration-150`}
+              >
+                {e.icon}
+              </a>
+            ))}
           </div>
           <Link href="/">
             <a className="flex-[3] text-5xl text-green-400 text-center oswald font-extrabold uppercase">
@@ -65,3 +70,26 @@ export default function Header({navs}) {
     </>
   );
 }
+
+const socialMedias = [
+  {
+    name: "facebook",
+    icon: <FacebookIcon />,
+    color: "hover:bg-[#3b5998]",
+  },
+  {
+    name: "twitter",
+    icon: <TwitterIcon />,
+    color: "hover:bg-[#00acee]",
+  },
+  {
+    name: "instagram",
+    icon: <InstagramIcon />,
+    color: "instagram-color",
+  },
+  {
+    name: "youtube",
+    icon: <YoutubeIcon />,
+    color: "hover:bg-[#FF0000]",
+  },
+];
