@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function NewsCard2xl() {
   return (
-    <a href="#" className="flex-[2] h-[600px] relative block group bg-black">
+    <a href="#" className="h-[480px] xs:h-[600px] relative block group bg-black">
       <Image
         alt="random-pic"
         layout="fill"
@@ -17,10 +17,10 @@ export default function NewsCard2xl() {
             / 2 years ago
           </span>
         </p>
-        <h1 className="oswald font-extrabold text-5xl text-white">
+        <h1 className="oswald font-extrabold text-4xl xs:text-5xl text-white">
           Emily Ratajkowski channels back-to-school 
         </h1>
-        <p className="mt-3 text-white">
+        <p className="mt-3 text-white hidden xs:block">
           In publishing and graphic design, Lorem ipsum is a placeholder text
           commonly used to demonstrate the visual form of a document or a
           typeface without

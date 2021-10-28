@@ -14,27 +14,27 @@ export default function Footer() {
   return (
     <footer className="bg-[#111111] flex flex-col items-center">
       <Link href="/">
-        <a className="flex-[3] text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">
+        <a className="flex-[3] text-4xl xs:text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">
           koran online
         </a>
       </Link>
-      <div className="space-x-3 flex my-6 text-white">
+      <div className="space-x-1 xs:space-x-3 flex my-6 text-white">
         {socialMedias.map((e, i) => (
           <a
             key={i}
             href="#"
-            className={`${e.color} rounded-full bg-gray-700 h-10 w-10 flex items-center justify-center duration-150`}
+            className={`${e.color} rounded-full bg-gray-700 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center duration-150`}
           >
             {e.icon}
           </a>
         ))}
       </div>
       <nav className="mb-10">
-        <ul className="flex space-x-5">
+        <ul className="flex justify-center items-center flex-wrap space-x-3 xs:space-x-5">
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
-                <a className="uppercase font-thin tracking-wider text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
+                <a className="uppercase font-thin tracking-wider text-xs sm:text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
                   {nav.text}
                 </a>
               </Link>

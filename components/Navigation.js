@@ -3,12 +3,12 @@ import { MenuIcon, SearchIcon } from "./icon";
 
 export default function Navigation() {
   return (
-    <nav className="bg-white sticky top-0 z-50 shadow-lg">
+    <nav className="bg-white sticky top-0 z-50 shadow-lg py-2 lg:py-0">
       <div className="w-11/12 mx-auto flex items-center">
         <div className="flex-1 h-full flex items-center">
           <MenuIcon />
         </div>
-        <ul className="flex-[3] flex items-center justify-center space-x-6">
+        <ul className="flex-[3] hidden lg:flex items-center justify-center space-x-6">
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
