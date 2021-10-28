@@ -16,7 +16,7 @@ export default function NewsDetail() {
           Programming
         </span>
       </h5>
-      <h1 className="oswald font-bold text-6xl text-gray-900">
+      <h1 className="oswald font-bold text-3xl xs:text-5xl text-gray-900">
         Illinois’ financial crisis could bring the state to a halt
       </h1>
       <p className="text-lg font-semibold text-gray-500 my-5">
@@ -32,7 +32,7 @@ export default function NewsDetail() {
           </p>
         </div>
       </div>
-      <div className="h-[492px] w-full my-5 relative">
+      <div className="h-[350px] sm:h-[492px] w-full my-5 relative">
         <Image
           alt="random-pic"
           layout="fill"
@@ -40,9 +40,9 @@ export default function NewsDetail() {
           src="https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"
         />
       </div>
-      <div className="flex space-x-3 my-5">
+      <div className="xs:flex space-x-3 my-5">
         <div className="flex-1">
-          <div className="flex flex-col items-center space-y-3 sticky top-20">
+          <div className="flex xs:flex-col items-center justify-center space-x-3 xs:space-x-0 xs:space-y-3 xs:sticky top-20">
             {socialMedias.map((e, i) => (
               <a
                 href="#"
@@ -54,7 +54,7 @@ export default function NewsDetail() {
             ))}
           </div>
         </div>
-        <div className="flex-[9]">
+        <div className="flex-[9] mt-3 xs:mt-0">
           <p className="text-gray-700 font-semibold text-lg whitespace-pre-wrap">
             {paragraph}
           </p>
