@@ -1,29 +1,27 @@
-# Next.js + Tailwind CSS Example
+# Projek 1 Kampus Merdeka - Web Based News API
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Instruksi
+Lakukan pendaftaran pada website News API untuk mendapatkan API Key ( gratis ) dan pelajari
+dokumentasi penggunaannya. Link API tertera di bawah
+Buatlah beberapa halaman web dengan menggunakan ReactJS dan library-library pendukungnya,
+dengan detail sebagai berikut :
+	1. Indonesia => menampilkan berita terkini dari Indonesia :heavy_check_mark:
+	2. Programming => menampilkan berita seputar Programming dalam 1 bulan terakhir :heavy_check_mark:
+	3. COVID-19 => menampilkan berita seputar COVID-19 dalam 1 bulan terakhir :heavy_check_mark:
+	4. Saved => menampilkan semua berita yang di save :white_check_mark:
+	5. Search => menampilkan semua berita yang sesuai dengan kata kunci yang di masukkan :white_check_mark:
+Selain halaman Indonesia, maka berita yang dicari adalah global ( tidak hanya dari Indonesia).
+Perhatikan bentuk navigasi yang dicontohkan.
+Detail masing-masing halaman akan dijelaskan pada slide-slide selanjutnya.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+## Library
+ReactJS dan library-library pendukungnya, yang digunakan pada repo ini yaitu
+1. NextJS (Framework ReactJS)
+3. Tailwind CSS
+2. Redux Toolkit
 
-## Preview
+## API
+News API [news api](https://newsapi.org).
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## UI Framework
+Bebas, UI pada slide hanyalah contoh, silakan berkreasi
