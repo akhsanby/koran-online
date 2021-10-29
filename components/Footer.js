@@ -12,7 +12,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111111] flex flex-col items-center">
+    <footer className="bg-[#111111] flex flex-col items-center px-3">
       <Link href="/">
         <a className="flex-[3] text-4xl xs:text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">
           koran online
