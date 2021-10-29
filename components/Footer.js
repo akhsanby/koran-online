@@ -42,9 +42,9 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-      <div className="bg-black">
-        <p className="px-3 text-center text-white py-3 w-full">copyright</p>
-      </div>
+      <h4 className="bg-black py-3 w-full text-center text-white">
+        copyright
+      </h4>
     </footer>
   );
 }
