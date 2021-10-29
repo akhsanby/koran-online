@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <>
       <header className="bg-black text-white">
-        <div className=" flex py-4 mx-auto px-1 xs:px-0 xs:w-11/12">
+        <div className=" flex py-4 mx-auto px-3 xs:px-0 xs:w-11/12">
           <div className="flex-1 flex items-center space-x-3">
             {socialMedias.map((e, i) => (
               <a
