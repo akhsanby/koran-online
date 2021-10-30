@@ -13,7 +13,7 @@ export default function Saved() {
               <tr className="border-b-2 border-gray-600">
                 <th className="p-3 w-[14rem]">Source</th>
                 <th className="p-3 w-[14rem]">Title</th>
-                <th className="p-3 w-[30rem]">Description</th>
+                <th className="p-3">Description</th>
               </tr>
             </thead>
             <tbody>

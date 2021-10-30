@@ -13,6 +13,7 @@ export default function HotNews() {
     if(router.pathname == '/') return state.news.data?.indonesia
     if(router.pathname == '/programming') return state.news.data?.programming
     if(router.pathname == '/covid19') return state.news.data?.covid19
+    if(router.pathname == '/search' && router.query.keyword) return state.news.data?.indonesia
   })
   
   const activeTabData = () => {

@@ -3,7 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 const api_url = {
   indo: "https://newsapi.org/v2/top-headlines?country=id&apiKey=878e17c0f1c041ffa642af8bd9c78ca7",
   programming: "https://newsapi.org/v2/everything?q=programming&apiKey=878e17c0f1c041ffa642af8bd9c78ca7",
-  covid19: "https://newsapi.org/v2/everything?q=covid19&apiKey=878e17c0f1c041ffa642af8bd9c78ca7"
+  covid19: "https://newsapi.org/v2/everything?q=covid19&apiKey=878e17c0f1c041ffa642af8bd9c78ca7",
+  byKeyword: "https://newsapi.org/v2/everything?apiKey=878e17c0f1c041ffa642af8bd9c78ca7"
 }
 
 export const fetchNewsIndonesia = createAsyncThunk(
@@ -42,12 +43,28 @@ export const fetchNewsCovid19 = createAsyncThunk(
   }
 )
 
+export const fetchNewsByKeyword = createAsyncThunk(
+  'news/fetchNewsByKeyword',
+  async (keyword, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setSearchKeyword(keyword))
+      const response = await fetch(api_url.byKeyword.concat(`&q=${keyword}`))
+      return await response.json()
+    } catch(err) {
+      throw new Error(error)
+    }
+  }
+)
+
 const initialState = {
   data: {
     indonesia: {},
     programming: {},
-    covid19: {}
+    covid19: {},
+    saved: {},
+    searchResult: {}
   },
+  keyword: null,
   loading: false,
   error: null,
 }
@@ -55,6 +72,20 @@ const initialState = {
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
+  reducers: {
+    saveThisNews: (state, action) => {
+      state.data.saved += action.payload
+    },
+    removeThisNews: (state, action) => {
+      
+    },
+    setSearchKeyword: (state, action) => {
+      state.keyword = action.payload
+    },
+    removeLastNewsData: (state) => {
+      state.data.searchResult = {}
+    }
+  },
   extraReducers: {
     // indonesia
     [fetchNewsIndonesia.pending]: (state, action) => {
@@ -94,8 +125,23 @@ export const newsSlice = createSlice({
     [fetchNewsCovid19.rejected]: (state, action) => {
       state.error = action.error.message
       state.loading = false
+    },
+    // search by keyword
+    [fetchNewsByKeyword.pending]: (state, action) => {
+      state.loading = true
+      state.error = null
+    },
+    [fetchNewsByKeyword.fulfilled]: (state, action) => {
+      state.data.searchResult = action.payload
+      state.loading = false
+    },
+    [fetchNewsByKeyword.rejected]: (state, action) => {
+      state.error = action.error.message
+      state.loading = false
     }
   }
 })
+
+export const { saveThisNews, setSearchKeyword, removeLastNewsData } = newsSlice.actions
 
 export default newsSlice.reducer

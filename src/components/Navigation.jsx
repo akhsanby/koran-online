@@ -1,7 +1,29 @@
 import Link from "next/link";
 import { MenuIcon, SearchIcon } from "./icon";
 
+import { useRouter } from 'next/router'
+
+// redux
+import { useDispatch } from 'react-redux'
+import { fetchNewsByKeyword, removeLastNewsData } from '../features/news-slice'
+
 export default function Navigation() {
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  const handleSearchWithEnterPressed = (e) => {
+    if(e.key == 'Enter') {
+      e.preventDefault()
+      dispatch(removeLastNewsData())
+      dispatch(fetchNewsByKeyword(e.target.value))
+      router.push({ 
+        pathname: "/search",
+        query: { keyword: e.target.value } 
+      })
+      e.target.value = ''
+    } 
+  }
+
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-lg py-2 lg:py-0">
       <div className="w-11/12 mx-auto flex items-center">
@@ -24,6 +46,7 @@ export default function Navigation() {
             <input
               placeholder="search"
               className="border rounded-xl px-3 w-40"
+              onKeyPress={handleSearchWithEnterPressed}
             />
             <div className="absolute right-2 top-0 h-full flex items-center">
               <SearchIcon />
