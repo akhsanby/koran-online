@@ -9,7 +9,7 @@ dengan detail sebagai berikut :
 2. Programming => menampilkan berita seputar Programming dalam 1 bulan terakhir :heavy_check_mark:
 3. COVID-19 => menampilkan berita seputar COVID-19 dalam 1 bulan terakhir :heavy_check_mark:
 4. Saved => menampilkan semua berita yang di save :clock9:
-5. Search => menampilkan semua berita yang sesuai dengan kata kunci yang di masukkan :clock9:
+5. Search => menampilkan semua berita yang sesuai dengan kata kunci yang di masukkan :heavy_check_mark:
 
 Selain halaman Indonesia, maka berita yang dicari adalah global ( tidak hanya dari Indonesia).
 Perhatikan bentuk navigasi yang dicontohkan.
