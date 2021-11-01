@@ -1,5 +1,5 @@
-import Layout from "../src/components/Layout";
-import NewsCardXl from "../src/components/NewsCardXl";
+import Layout from "../../src/components/Layout";
+import NewsCardXl from "../../src/components/NewsCardXl";
 
 import { useRouter } from 'next/router'
 

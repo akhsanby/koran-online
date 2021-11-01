@@ -2,33 +2,30 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 // components
-import Layout from "../src/components/Layout";
-import NewsCardLg from "../src/components/NewsCardLg";
-import NewsCardXl from "../src/components/NewsCardXl";
-import NewsCard2xl from "../src/components/NewsCard2xl";
+import Layout from "./Layout";
+import NewsCardLg from "./NewsCardLg";
+import NewsCardXl from "./NewsCardXl";
+import NewsCard2xl from "./NewsCard2xl";
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchNewsIndonesia, fetchNewsProgramming, fetchNewsCovid19 } from '../src/features/news-slice'
+import { fetchNewsIndonesia, fetchNewsProgramming, fetchNewsCovid19 } from '../features/news-slice'
+
+// utils
+import { newsTagName } from '../utils/newsTagName'
 
 export default function Home() {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const newsData = useSelector((state) => {
-    if(router.pathname == '/') return state.news.data?.indonesia
+    if(router.pathname == '/indonesia') return state.news.data?.indonesia
     if(router.pathname == '/programming') return state.news.data?.programming
     if(router.pathname == '/covid19') return state.news.data?.covid19
   })
 
-  const newsTagName = () => {
-    if(router.pathname == '/') return 'Indonesia'
-    if(router.pathname == '/programming') return 'Programming'
-    if(router.pathname == '/covid19') return 'Covid 19'
-  }
-
   useEffect(() => {  
-    if(router.pathname == '/') return dispatch(fetchNewsIndonesia())
+    if(router.pathname == '/indonesia') return dispatch(fetchNewsIndonesia())
     if(router.pathname == '/programming') return dispatch(fetchNewsProgramming())
     if(router.pathname == '/covid19') return dispatch(fetchNewsCovid19())
   }, [])

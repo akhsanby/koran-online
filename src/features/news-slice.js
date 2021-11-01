@@ -62,7 +62,8 @@ const initialState = {
     programming: {},
     covid19: {},
     saved: {},
-    searchResult: {}
+    searchResult: {},
+    detailNewsResult: {}
   },
   keyword: null,
   loading: false,
@@ -84,6 +85,9 @@ export const newsSlice = createSlice({
     },
     removeLastNewsData: (state) => {
       state.data.searchResult = {}
+    },
+    addDetailNewsOnClick: (state, action) => {
+      state.data.detailNewsResult = action.payload
     }
   },
   extraReducers: {
@@ -142,6 +146,6 @@ export const newsSlice = createSlice({
   }
 })
 
-export const { saveThisNews, setSearchKeyword, removeLastNewsData } = newsSlice.actions
+export const { saveThisNews, setSearchKeyword, removeLastNewsData, addDetailNewsOnClick } = newsSlice.actions
 
 export default newsSlice.reducer

@@ -1,17 +1,27 @@
 import Image from "next/image";
 import { BookmarkIcon } from "./icon";
 
+// utils
+import { newsTagName } from '../utils/newsTagName'
+
+// redux
+import { useDispatch } from 'react-redux'
+import { addDetailNewsOnClick } from '../features/news-slice'
+
 export default function NewsCard2xl({ oneArticle, router }) {
-  const newsTagName = () => {
-    if(router.pathname == '/') return 'Indonesia'
-    if(router.pathname == '/programming') return 'Programming'
-    if(router.pathname == '/covid19') return 'Covid 19'
+  const dispatch = useDispatch()
+
+  const handleRedirectToDetailNews = () => {
+    dispatch(addDetailNewsOnClick(oneArticle))
+    if (router.pathname == '/indonesia') router.push(`/indonesia/${oneArticle.title}`)
+    if (router.pathname == '/programming') router.push(`/programming/${oneArticle.title}`)
+    if (router.pathname == '/covid19') router.push(`/covid19/${oneArticle.title}`)
   }
 
   return (
-    <a
-      href="#"
-      className="h-[480px] xs:h-[600px] relative block group bg-black"
+    <div
+      className="h-[480px] xs:h-[600px] relative block group bg-black cursor-pointer"
+      onClick={handleRedirectToDetailNews}
     >
       <Image
         alt="random-pic"
@@ -40,6 +50,6 @@ export default function NewsCard2xl({ oneArticle, router }) {
           {oneArticle?.description}
         </p>
       </div>
-    </a>
+    </div>
   );
 }

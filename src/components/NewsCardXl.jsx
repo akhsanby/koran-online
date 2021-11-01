@@ -2,20 +2,25 @@ import Image from "next/image";
 import { BookmarkIcon } from "./icon";
 
 // redux
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { addDetailNewsOnClick } from '../features/news-slice'
+
+// utils
+import { newsTagName } from '../utils/newsTagName'
 
 export default function NewsCardXl({ article, router }) {
-  const searchKeyword = useSelector(state => state.news.keyword)
+  const dispatch = useDispatch()
 
-  const newsTagName = () => {
-    if(router.pathname == '/') return 'Indonesia'
-    if(router.pathname == '/programming') return 'Programming'
-    if(router.pathname == '/covid19') return 'Covid 19'
-    if(router.pathname == '/search') return router.query.keyword
+  const handleRedirectToDetailNews = () => {
+    dispatch(addDetailNewsOnClick(article))
+    if (router.pathname == '/indonesia') router.push(`/indonesia/${article.title}`)
+    if (router.pathname == '/programming') router.push(`/programming/${article.title}`)
+    if (router.pathname == '/covid19') router.push(`/covid19/${article.title}`)
+    if (router.pathname == '/search' && router.query.keyword) router.push(`/search/${article.title}`)
   }
   
   return (
-    <a href="#" className="flex group">
+    <div className="flex group cursor-pointer" onClick={handleRedirectToDetailNews}>
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
         <Image
           alt="random-pic"
@@ -40,6 +45,6 @@ export default function NewsCardXl({ article, router }) {
           {article?.description}
         </p>
       </div>
-    </a>
+    </div>
   );
 }
