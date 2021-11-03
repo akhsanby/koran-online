@@ -75,7 +75,14 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     saveThisNews: (state, action) => {
-      
+      const dataToFind = state.data.saved.find(item => {
+        return item.id === action.payload.id
+      })
+      if(dataToFind) {
+        state.data.saved.filter(item => item.id !== dataToFind.id)
+      } else {
+        state.data.saved.push(action.payload)
+      }
     },
     setSearchKeyword: (state, action) => {
       state.keyword = action.payload

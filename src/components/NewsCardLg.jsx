@@ -12,6 +12,8 @@ export default function NewsCardLg({ id, article, router }) {
   const dispatch = useDispatch()
   const savedNews = useSelector(state => state.news.data.saved)
 
+  console.log(savedNews)
+
   const handleRedirectToDetailNews = () => {
     dispatch(addDetailNewsOnClick(article))
     if (router.pathname == '/') router.push(`/indonesia/${article.title}`)
@@ -25,7 +27,7 @@ export default function NewsCardLg({ id, article, router }) {
     // } else {
     //   sessionStorage.removeItem(id.toString())
     // }
-    
+    dispatch(saveThisNews({ id, article }))
   }
 
   return (
