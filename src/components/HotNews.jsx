@@ -10,7 +10,7 @@ export default function HotNews() {
   const router = useRouter()
 
   const newsData = useSelector((state) => {
-    if(router.pathname == '/indonesia' || router.pathname == '/indonesia/[detail]' ) return state.news.data?.indonesia
+    if(router.pathname == '/' || router.pathname == '/indonesia/[detail]' ) return state.news.data?.indonesia
     if(router.pathname == '/programming' || router.pathname == '/programming/[detail]') return state.news.data?.programming
     if(router.pathname == '/covid19' || router.pathname == '/covid19/[detail]') return state.news.data?.covid19
     if(router.pathname == '/search' && router.query.keyword || router.pathname == '/search/[detail]') return state.news.data?.indonesia
