@@ -61,7 +61,7 @@ export default function Navigation() {
 const navs = [
   {
     text: "indonesia",
-    link: "/indonesia",
+    link: "/",
   },
   {
     text: "programming",

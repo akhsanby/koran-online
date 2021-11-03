@@ -13,14 +13,14 @@ export default function NewsCardXl({ article, router }) {
 
   const handleRedirectToDetailNews = () => {
     dispatch(addDetailNewsOnClick(article))
-    if (router.pathname == '/indonesia') router.push(`/indonesia/${article.title}`)
+    if (router.pathname == '/') router.push(`/indonesia/${article.title}`)
     if (router.pathname == '/programming') router.push(`/programming/${article.title}`)
     if (router.pathname == '/covid19') router.push(`/covid19/${article.title}`)
     if (router.pathname == '/search' && router.query.keyword) router.push(`/search/${article.title}`)
   }
   
   return (
-    <div className="flex group cursor-pointer" onClick={handleRedirectToDetailNews}>
+    <div className="flex group">
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
         <Image
           alt="random-pic"
@@ -33,7 +33,7 @@ export default function NewsCardXl({ article, router }) {
           <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-4 w-4" />
         </button>
       </div>
-      <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center">
+      <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center cursor-pointer" onClick={handleRedirectToDetailNews}>
         <p className="font-extrabold uppercase text-xs lg:text-sm xs:mt-4 lg:mt-2 mb-1 lg:mb-0">
           {newsTagName()}{" "}
           <span className="font-medium lowercase">/ {article?.publishedAt}</span>

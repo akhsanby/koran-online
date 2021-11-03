@@ -19,13 +19,13 @@ export default function Home() {
   const dispatch = useDispatch()
 
   const newsData = useSelector((state) => {
-    if(router.pathname == '/indonesia') return state.news.data?.indonesia
+    if(router.pathname == '/') return state.news.data?.indonesia
     if(router.pathname == '/programming') return state.news.data?.programming
     if(router.pathname == '/covid19') return state.news.data?.covid19
   })
 
   useEffect(() => {  
-    if(router.pathname == '/indonesia') return dispatch(fetchNewsIndonesia())
+    if(router.pathname == '/') return dispatch(fetchNewsIndonesia())
     if(router.pathname == '/programming') return dispatch(fetchNewsProgramming())
     if(router.pathname == '/covid19') return dispatch(fetchNewsCovid19())
   }, [])
@@ -41,7 +41,7 @@ export default function Home() {
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
             {newsData.articles?.slice(1, 3).map((article, index) => (
-              <NewsCardLg key={index} article={article} router={router}/>
+              <NewsCardLg key={index} id={index} article={article} router={router}/>
             ))}
           </div>
         </div>

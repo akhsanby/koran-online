@@ -13,15 +13,14 @@ export default function NewsCard2xl({ oneArticle, router }) {
 
   const handleRedirectToDetailNews = () => {
     dispatch(addDetailNewsOnClick(oneArticle))
-    if (router.pathname == '/indonesia') router.push(`/indonesia/${oneArticle.title}`)
+    if (router.pathname == '/') router.push(`/indonesia/${oneArticle.title}`)
     if (router.pathname == '/programming') router.push(`/programming/${oneArticle.title}`)
     if (router.pathname == '/covid19') router.push(`/covid19/${oneArticle.title}`)
   }
 
   return (
     <div
-      className="h-[480px] xs:h-[600px] relative block group bg-black cursor-pointer"
-      onClick={handleRedirectToDetailNews}
+      className="h-[480px] xs:h-[600px] relative block group bg-black"
     >
       <Image
         alt="random-pic"
@@ -36,7 +35,7 @@ export default function NewsCard2xl({ oneArticle, router }) {
           size="h-6 w-6"
         />
       </button>
-      <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black via-gray-900/75">
+      <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black via-gray-900/75 cursor-pointer" onClick={handleRedirectToDetailNews}>
         <p className="font-extrabold uppercase text-sm mt-2 text-green-400">
           {newsTagName()}{" "}
           <span className="font-medium lowercase text-white">

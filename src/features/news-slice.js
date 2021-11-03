@@ -61,7 +61,7 @@ const initialState = {
     indonesia: {},
     programming: {},
     covid19: {},
-    saved: {},
+    saved: [],
     searchResult: {},
     detailNewsResult: {}
   },
@@ -75,9 +75,6 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     saveThisNews: (state, action) => {
-      state.data.saved += action.payload
-    },
-    removeThisNews: (state, action) => {
       
     },
     setSearchKeyword: (state, action) => {
