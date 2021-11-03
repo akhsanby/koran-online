@@ -1,12 +1,7 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import MainContent from '../src/components/MainContent'
 
-export default function Root() {
-	const router = useRouter()
-
-	useEffect(() => {
-		router.push("/indonesia")
-	})
-
-	return null
+export default function Home() {
+  return (
+    <MainContent />
+  )
 }
