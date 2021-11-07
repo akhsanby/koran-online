@@ -8,11 +8,9 @@ import { newsTagName } from '../utils/newsTagName'
 import { useSelector, useDispatch } from 'react-redux'
 import { saveThisNews, addDetailNewsOnClick } from '../features/news-slice'
 
-export default function NewsCardLg({ id, article, router }) {
+export default function NewsCardLg({ article, router }) {
   const dispatch = useDispatch()
   const savedNews = useSelector(state => state.news.data.saved)
-
-  console.log(savedNews)
 
   const handleRedirectToDetailNews = () => {
     dispatch(addDetailNewsOnClick(article))
@@ -22,12 +20,13 @@ export default function NewsCardLg({ id, article, router }) {
   }
 
   const handleBookmarkAndUnBookmark = () => {
-    // if(!sessionStorage.getItem(id.toString())) {
-    //   sessionStorage.setItem(id.toString(), JSON.stringify(article));
-    // } else {
-    //   sessionStorage.removeItem(id.toString())
-    // }
-    dispatch(saveThisNews({ id, article }))
+    dispatch(saveThisNews({ article }))
+  }
+
+  const IconBookmarkOrUnBookmark = () => {
+    const result = savedNews.some(item => item.article.title === article.title)
+    if (result) return <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-4 w-4" />
+    if (!result) return <BookmarkIcon color="text-grey-300 hover:text-grey-400" size="h-4 w-4" />
   }
 
   return (
@@ -41,7 +40,7 @@ export default function NewsCardLg({ id, article, router }) {
           className="group-hover:opacity-80 duration-300"
         />
         <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center" onClick={handleBookmarkAndUnBookmark}>
-          <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-4 w-4" />
+          <IconBookmarkOrUnBookmark />
         </button>
       </div>
       <div className="cursor-pointer" onClick={handleRedirectToDetailNews}>

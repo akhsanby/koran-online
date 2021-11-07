@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/router'
+
+// components
 import NewsCardSm from "./NewsCardSm";
 
 // redux

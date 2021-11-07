@@ -76,10 +76,11 @@ export const newsSlice = createSlice({
   reducers: {
     saveThisNews: (state, action) => {
       const dataToFind = state.data.saved.find(item => {
-        return item.id === action.payload.id
+        return item.article.title === action.payload.article.title
       })
       if(dataToFind) {
-        state.data.saved.filter(item => item.id !== dataToFind.id)
+        const filtered = state.data.saved.filter(item => item.article.title !== dataToFind.article.title)
+        state.data.saved = filtered
       } else {
         state.data.saved.push(action.payload)
       }

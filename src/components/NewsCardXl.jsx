@@ -2,14 +2,15 @@ import Image from "next/image";
 import { BookmarkIcon } from "./icon";
 
 // redux
-import { useDispatch } from 'react-redux'
-import { addDetailNewsOnClick } from '../features/news-slice'
+import { useSelector, useDispatch } from 'react-redux'
+import { saveThisNews, addDetailNewsOnClick } from '../features/news-slice'
 
 // utils
 import { newsTagName } from '../utils/newsTagName'
 
 export default function NewsCardXl({ article, router }) {
   const dispatch = useDispatch()
+  const savedNews = useSelector(state => state.news.data.saved)
 
   const handleRedirectToDetailNews = () => {
     dispatch(addDetailNewsOnClick(article))
@@ -18,7 +19,15 @@ export default function NewsCardXl({ article, router }) {
     if (router.pathname == '/covid19') router.push(`/covid19/${article.title}`)
     if (router.pathname == '/search' && router.query.keyword) router.push(`/search/${article.title}`)
   }
-  
+
+  const handleBookmarkAndUnBookmark = () => dispatch(saveThisNews({ article }))
+
+  const IconBookmarkOrUnBookmark = () => {
+    const result = savedNews.some(item => item.article.title === article.title)
+    if (result) return <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-4 w-4" />
+    if (!result) return <BookmarkIcon color="text-grey-300 hover:text-grey-400" size="h-4 w-4" />
+  }
+
   return (
     <div className="flex group">
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
@@ -29,8 +38,8 @@ export default function NewsCardXl({ article, router }) {
           src={`/api/imageproxy?url=${encodeURIComponent(article?.urlToImage)}` || "https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/airplane.jpg"}
           className="group-hover:opacity-80 duration-300"
         />
-        <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">
-          <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-4 w-4" />
+        <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center" onClick={handleBookmarkAndUnBookmark}>
+          <IconBookmarkOrUnBookmark />
         </button>
       </div>
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center cursor-pointer" onClick={handleRedirectToDetailNews}>

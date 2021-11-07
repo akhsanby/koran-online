@@ -41,7 +41,7 @@ export default function Home() {
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
             {newsData.articles?.slice(1, 3).map((article, index) => (
-              <NewsCardLg key={index} id={index} article={article} router={router}/>
+              <NewsCardLg key={index} article={article} router={router}/>
             ))}
           </div>
         </div>

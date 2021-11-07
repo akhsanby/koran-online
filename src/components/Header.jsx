@@ -8,7 +8,12 @@ import {
 } from "./icon";
 import Navigation from "./Navigation";
 
+// redux
+import { useSelector } from 'react-redux'
+
 export default function Header() {
+  const savedNews = useSelector(state => state.news.data.saved)
+
   return (
     <>
       <header className="bg-black text-white">
@@ -33,7 +38,7 @@ export default function Header() {
             <BookmarkIcon />
             <Link href="/saved">
               <a className="h-[22px] w-[22px] text-[10px] font-semibold grid place-items-center bg-gray-700 hover:bg-green-400 duration-300 rounded-full">
-                10
+                {savedNews.length}
               </a>
             </Link>
           </div>

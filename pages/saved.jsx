@@ -1,6 +1,14 @@
+import Link from 'next/link'
+
+// components
 import Layout from "../src/components/Layout";
 
+// redux
+import { useSelector } from 'react-redux'
+
 export default function Saved() {
+  const savedNews = useSelector(state => state.news.data.saved)
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold oswald border-green-300 border-b-4 py-4 uppercase text-gray-800">
@@ -17,16 +25,17 @@ export default function Saved() {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((el) => (
-                <tr key={el} className="odd:bg-gray-100">
-                  <td className="p-3 w-[14rem] ">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
+              {savedNews?.map((item, index) => (
+                <tr key={index} className="odd:bg-gray-100">
+                  <td className="p-3 w-[14rem]">
+                    <div>{item.article?.source?.name} - {item.article?.author}</div>
+                    <a className="no-underline hover:underline" href={item.article?.url}>News Page</a>
                   </td>
                   <td className="p-3 w-[14rem] ">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
+                    {item.article?.title}
                   </td>
                   <td className="p-3">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
+                    {item.article?.description}
                   </td>
                 </tr>
               ))}
