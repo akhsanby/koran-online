@@ -1,18 +1,18 @@
-import Link from "next/link";
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import {
   BookmarkIcon,
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
   YoutubeIcon,
-} from "./icon";
-import Navigation from "./Navigation";
+} from './icon';
+import Navigation from './Navigation';
 
 // redux
-import { useSelector } from 'react-redux'
 
 export default function Header() {
-  const savedNews = useSelector(state => state.news.data.saved)
+  const savedNews = useSelector((state) => state.news.data.saved);
 
   return (
     <>
@@ -51,23 +51,23 @@ export default function Header() {
 
 const socialMedias = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: <FacebookIcon />,
-    color: "hover:bg-[#3b5998]",
+    color: 'hover:bg-[#3b5998]',
   },
   {
-    name: "twitter",
+    name: 'twitter',
     icon: <TwitterIcon />,
-    color: "hover:bg-[#00acee]",
+    color: 'hover:bg-[#00acee]',
   },
   {
-    name: "instagram",
+    name: 'instagram',
     icon: <InstagramIcon />,
-    color: "instagram-color",
+    color: 'instagram-color',
   },
   {
-    name: "youtube",
+    name: 'youtube',
     icon: <YoutubeIcon />,
-    color: "hover:bg-[#FF0000]",
+    color: 'hover:bg-[#FF0000]',
   },
 ];

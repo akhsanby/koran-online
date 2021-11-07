@@ -1,28 +1,28 @@
-import Link from "next/link";
-import { MenuIcon, SearchIcon } from "./icon";
+import Link from 'next/link';
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 // redux
-import { useDispatch } from 'react-redux'
-import { fetchNewsByKeyword, removeLastNewsData } from '../features/news-slice'
+import { useDispatch } from 'react-redux';
+import { MenuIcon, SearchIcon } from './icon';
+import { fetchNewsByKeyword, removeLastNewsData } from '../features/news-slice';
 
 export default function Navigation() {
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleSearchWithEnterPressed = (e) => {
-    if(e.key == 'Enter') {
-      e.preventDefault()
-      dispatch(removeLastNewsData())
-      dispatch(fetchNewsByKeyword(e.target.value))
-      router.push({ 
-        pathname: "/search",
-        query: { keyword: e.target.value } 
-      })
-      e.target.value = ''
-    } 
-  }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      dispatch(removeLastNewsData());
+      dispatch(fetchNewsByKeyword(e.target.value));
+      router.push({
+        pathname: '/search',
+        query: { keyword: e.target.value },
+      });
+      e.target.value = '';
+    }
+  };
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-lg py-2 lg:py-0">
@@ -60,31 +60,31 @@ export default function Navigation() {
 
 const navs = [
   {
-    text: "indonesia",
-    link: "/",
+    text: 'indonesia',
+    link: '/',
   },
   {
-    text: "programming",
-    link: "/programming",
+    text: 'programming',
+    link: '/programming',
   },
   {
-    text: "covid19",
-    link: "/covid19",
+    text: 'covid19',
+    link: '/covid19',
   },
   {
-    text: "entertainment",
-    link: "#",
+    text: 'entertainment',
+    link: '/entertainment',
   },
   {
-    text: "politics",
-    link: "#",
+    text: 'sports',
+    link: '/sports',
   },
   {
-    text: "tech",
-    link: "#",
+    text: 'technology',
+    link: '/technology',
   },
   {
-    text: "saved",
-    link: "/saved",
+    text: 'saved',
+    link: '/saved',
   },
 ];

@@ -1,28 +1,24 @@
-import { useState } from "react";
-import { useRouter } from 'next/router'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 // components
-import NewsCardSm from "./NewsCardSm";
+import { useSelector } from 'react-redux';
+import NewsCardSm from './NewsCardSm';
 
-// redux
-import { useSelector } from 'react-redux'
+// utils
+import { getNewsDataFromState } from '../utils';
 
 export default function HotNews() {
-  const [activeTab, setActiveTab] = useState("latest");
-  const router = useRouter()
+  const [activeTab, setActiveTab] = useState('latest');
+  const router = useRouter();
 
-  const newsData = useSelector((state) => {
-    if(router.pathname == '/' || router.pathname == '/indonesia/[detail]' ) return state.news.data?.indonesia
-    if(router.pathname == '/programming' || router.pathname == '/programming/[detail]') return state.news.data?.programming
-    if(router.pathname == '/covid19' || router.pathname == '/covid19/[detail]') return state.news.data?.covid19
-    if(router.pathname == '/search' && router.query.keyword || router.pathname == '/search/[detail]') return state.news.data?.indonesia
-  })
-  
+  const newsData = getNewsDataFromState(useSelector, router);
+
   const activeTabData = () => {
-    if(activeTab == 'latest') return newsData?.articles?.slice(10, 13)
-    if(activeTab == 'trending') return newsData?.articles?.slice(13, 16)
-    if(activeTab == 'popular') return newsData?.articles?.slice(16, 19)
-  }
+    if (activeTab === 'latest') return newsData?.articles?.slice(10, 13);
+    if (activeTab === 'trending') return newsData?.articles?.slice(13, 16);
+    if (activeTab === 'popular') return newsData?.articles?.slice(16, 19);
+  };
 
   return (
     <div className="sticky top-16">
@@ -33,8 +29,8 @@ export default function HotNews() {
             onClick={() => setActiveTab(tab.text)}
             className={`${
               tab.text === activeTab
-                ? "bg-[#FF005B] text-white"
-                : "bg-transparent text-gray-400 hover:text-gray-800"
+                ? 'bg-[#FF005B] text-white'
+                : 'bg-transparent text-gray-400 hover:text-gray-800'
             } oswald rounded-none uppercase text-lg px-3 skew-x-[-15deg] font-extrabold`}
           >
             {tab.text}
@@ -43,7 +39,7 @@ export default function HotNews() {
       </div>
       <div className="w-full space-y-4 mt-4">
         {activeTabData()?.map((article, index) => (
-          <NewsCardSm key={index} article={article} router={router}/>
+          <NewsCardSm key={index} article={article} router={router} />
         ))}
       </div>
     </div>
@@ -52,12 +48,12 @@ export default function HotNews() {
 
 const tabs = [
   {
-    text: "latest",
+    text: 'latest',
   },
   {
-    text: "trending",
+    text: 'trending',
   },
   {
-    text: "popular",
+    text: 'popular',
   },
 ];

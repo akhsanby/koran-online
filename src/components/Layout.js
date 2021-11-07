@@ -1,6 +1,6 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import HotNews from "./HotNews";
+import Footer from './Footer';
+import Header from './Header';
+import HotNews from './HotNews';
 
 export default function Layout({ children }) {
   return (

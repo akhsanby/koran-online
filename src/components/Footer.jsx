@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 import {
   FacebookIcon,
   InstagramIcon,
@@ -8,7 +8,7 @@ import {
   TumblrIcon,
   TwitterIcon,
   YoutubeIcon,
-} from "./icon";
+} from './icon';
 
 export default function Footer() {
   return (
@@ -51,74 +51,74 @@ export default function Footer() {
 
 const socialMedias = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: <FacebookIcon />,
-    color: "hover:bg-[#3b5998]",
+    color: 'hover:bg-[#3b5998]',
   },
   {
-    name: "twitter",
+    name: 'twitter',
     icon: <TwitterIcon />,
-    color: "hover:bg-[#00acee]",
+    color: 'hover:bg-[#00acee]',
   },
   {
-    name: "pinterest",
+    name: 'pinterest',
     icon: <PinterestIcon />,
-    color: "hover:bg-[#c8232c]",
+    color: 'hover:bg-[#c8232c]',
   },
   {
-    name: "instagram",
+    name: 'instagram',
     icon: <InstagramIcon />,
-    color: "instagram-color",
+    color: 'instagram-color',
   },
   {
-    name: "tiktok",
+    name: 'tiktok',
     icon: <TiktokIcon />,
-    color: "hover:bg-[#000]",
+    color: 'hover:bg-[#000]',
   },
   {
-    name: "youtube",
+    name: 'youtube',
     icon: <YoutubeIcon />,
-    color: "hover:bg-[#FF0000]",
+    color: 'hover:bg-[#FF0000]',
   },
   {
-    name: "linkedIn",
+    name: 'linkedIn',
     icon: <LinkedInIcon />,
-    color: "hover:bg-[#0077b5]",
+    color: 'hover:bg-[#0077b5]',
   },
   {
-    name: "tumblr",
+    name: 'tumblr',
     icon: <TumblrIcon />,
-    color: "hover:bg-[#34526f]",
+    color: 'hover:bg-[#34526f]',
   },
 ];
 
 const navs = [
   {
-    text: "indonesia",
-    link: "/",
+    text: 'indonesia',
+    link: '/',
   },
   {
-    text: "programming",
-    link: "/programming",
+    text: 'programming',
+    link: '/programming',
   },
   {
-    text: "covid19",
-    link: "/covid19",
+    text: 'covid19',
+    link: '/covid19',
   },
   {
-    text: "entertainment",
-    link: "#",
+    text: 'entertainment',
+    link: '/entertainment',
   },
   {
-    text: "politics",
-    link: "#",
+    text: 'sports',
+    link: '/sports',
   },
   {
-    text: "tech",
-    link: "#",
+    text: 'technology',
+    link: '/technology',
   },
   {
-    text: "saved",
-    link: "/saved",
+    text: 'saved',
+    link: '/saved',
   },
 ];

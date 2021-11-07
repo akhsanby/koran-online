@@ -1,16 +1,16 @@
-import Menu from "./Menu";
-import Search from "./Search";
-import Facebook from "./Facebook";
-import Instagram from "./Instagram";
-import Twitter from "./Twitter";
-import Youtube from "./Youtube";
-import Bookmark from "./Bookmark";
-import Mail from "./Mail";
-import Whatsapp from "./Whatsapp";
-import Pinterest from "./Pinterest";
-import Tumblr from "./Tumblr";
-import Tiktok from "./Tiktok";
-import LinkedIn from "./LinkedIn";
+import Menu from './Menu';
+import Search from './Search';
+import Facebook from './Facebook';
+import Instagram from './Instagram';
+import Twitter from './Twitter';
+import Youtube from './Youtube';
+import Bookmark from './Bookmark';
+import Mail from './Mail';
+import Whatsapp from './Whatsapp';
+import Pinterest from './Pinterest';
+import Tumblr from './Tumblr';
+import Tiktok from './Tiktok';
+import LinkedIn from './LinkedIn';
 
 export {
   Menu as MenuIcon,

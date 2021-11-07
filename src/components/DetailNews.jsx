@@ -1,27 +1,25 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import {
   FacebookIcon,
   MailIcon,
   PinterestIcon,
   TwitterIcon,
   WhatsappIcon,
-} from "./icon";
-import Layout from "./Layout";
-
-// redux
-import { useSelector } from 'react-redux'
+} from './icon';
+import Layout from './Layout';
 
 // utils
-import { newsTagName } from '../utils/newsTagName'
+import { UseNewsCategoryName, formatDate } from '../utils';
 
 export default function DetailNews() {
-  const detailNews = useSelector(state => state.news.data?.detailNewsResult)
+  const detailNews = useSelector((state) => state.news.data?.detailNewsResult);
 
   return (
     <Layout>
       <h5 className="my-5">
         <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold inline-block">
-          {newsTagName()}
+          <UseNewsCategoryName />
         </span>
       </h5>
       <h1 className="oswald font-bold text-3xl xs:text-5xl text-gray-900">
@@ -31,11 +29,16 @@ export default function DetailNews() {
         {detailNews?.description}
       </p>
       <div className="flex items-center space-x-3">
-        <div className="rounded-full h-16 w-16 border-2 bg-yellow-400"></div>
+        <div className="rounded-full h-16 w-16 border-2 bg-yellow-400" />
         <div className="text-sm font-semibold text-gray-500">
-          <p>Published {detailNews?.publishedAt}</p>
           <p>
-            By <b className="text-gray-900 font-bold">{detailNews?.author}</b>
+            Published
+            {formatDate(detailNews?.publishedAt)}
+          </p>
+          <p>
+            By
+            {' '}
+            <b className="text-gray-900 font-bold">{detailNews?.author}</b>
           </p>
         </div>
       </div>
@@ -44,7 +47,7 @@ export default function DetailNews() {
           alt="random-pic"
           layout="fill"
           objectFit="cover"
-          src={`/api/imageproxy?url=${encodeURIComponent(detailNews?.urlToImage)}` || "https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"}
+          src={`/api/imageproxy?url=${encodeURIComponent(detailNews?.urlToImage)}` || 'https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg'}
         />
       </div>
       <div className="xs:flex space-x-3 my-5">
@@ -73,28 +76,28 @@ export default function DetailNews() {
 
 const socialMedias = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: <FacebookIcon />,
-    color: "bg-[#3b5998]",
+    color: 'bg-[#3b5998]',
   },
   {
-    name: "twitter",
+    name: 'twitter',
     icon: <TwitterIcon />,
-    color: "bg-[#00acee]",
+    color: 'bg-[#00acee]',
   },
   {
-    name: "pinterest",
+    name: 'pinterest',
     icon: <PinterestIcon />,
-    color: "bg-[#c8232c]",
+    color: 'bg-[#c8232c]',
   },
   {
-    name: "mail",
+    name: 'mail',
     icon: <MailIcon />,
-    color: "bg-gray-400",
+    color: 'bg-gray-400',
   },
   {
-    name: "whatsapp",
+    name: 'whatsapp',
     icon: <WhatsappIcon />,
-    color: "bg-[#075E54]",
+    color: 'bg-[#075E54]',
   },
 ];
