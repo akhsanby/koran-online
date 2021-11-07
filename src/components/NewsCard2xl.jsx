@@ -22,7 +22,7 @@ export default function NewsCard2xl({ oneArticle, router }) {
   const handleBookmarkAndUnBookmark = () => dispatch(saveThisNews({ article: oneArticle }))
 
   const IconBookmarkOrUnBookmark = () => {
-    const result = savedNews.some(item => item.article.title === oneArticle.title)
+    const result = savedNews.some(item => item.article.title === oneArticle?.title)
     if (result) return <BookmarkIcon color="text-yellow-300 hover:text-yellow-400" size="h-6 w-6" />
     if (!result) return <BookmarkIcon color="text-grey-300 hover:text-grey-400" size="h-6 w-6" />
   }
