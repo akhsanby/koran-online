@@ -25,7 +25,7 @@ export const UseNewsCategoryName = () => {
   if (router.pathname === '/sports' || router.pathname === '/sports/[detail]') return 'Sports';
   if (router.pathname === '/technology' || router.pathname === '/technology/[detail]') return 'Technology';
   if (router.pathname === '/saved') return 'Indonesia';
-  if (router.pathname === '/search') return router.query.keyword;
+  if (router.pathname === '/search' || router.pathname === '/search/[detail]') return 'string';
 };
 
 export function formatDate(value) {
