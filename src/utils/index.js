@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-
 // redux
 import { saveThisNews, addDetailNewsOnClick } from '../features/news-slice';
 
@@ -15,18 +13,6 @@ export function getNewsDataFromState(useSelector, router) {
     if (router.pathname === '/saved') return state.news.data?.indonesia;
   });
 }
-
-export const UseNewsCategoryName = () => {
-  const router = useRouter();
-  if (router.pathname === '/' || router.pathname === '/indonesia/[detail]') return 'Indonesia';
-  if (router.pathname === '/programming' || router.pathname === '/programming/[detail]') return 'Programming';
-  if (router.pathname === '/covid19' || router.pathname === '/covid19/[detail]') return 'Covid 19';
-  if (router.pathname === '/entertainment' || router.pathname === '/entertainment/[detail]') return 'Entertainment';
-  if (router.pathname === '/sports' || router.pathname === '/sports/[detail]') return 'Sports';
-  if (router.pathname === '/technology' || router.pathname === '/technology/[detail]') return 'Technology';
-  if (router.pathname === '/saved') return 'Indonesia';
-  if (router.pathname === '/search') return router.query.keyword;
-};
 
 export function formatDate(value) {
   const date = (value === undefined) ? null : new Date(value);

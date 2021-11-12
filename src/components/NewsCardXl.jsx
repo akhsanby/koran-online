@@ -4,7 +4,6 @@ import { BookmarkIcon } from './icon';
 
 // utils
 import {
-  UseNewsCategoryName,
   formatDate,
   handleBookmarkAndUnBookmark,
   handleRedirectToDetailNews,
@@ -36,7 +35,7 @@ export default function NewsCardXl({ article, router }) {
       </div>
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center cursor-pointer" onClick={() => handleRedirectToDetailNews(dispatch, router, article)}>
         <p className="font-extrabold uppercase text-xs lg:text-sm xs:mt-4 lg:mt-2 mb-1 lg:mb-0">
-          <UseNewsCategoryName />
+          {article?.source.name}
           {' '}
           <span className="font-medium">
             /
