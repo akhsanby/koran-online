@@ -30,7 +30,7 @@ export default function Footer() {
         ))}
       </div>
       <nav className="mb-10">
-        <ul className="flex justify-center items-center flex-wrap space-x-3 xs:space-x-5">
+        <ul className="flex justify-center items-center flex-wrap space-x-3 xs:space-x-5 px-3">
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
@@ -42,9 +42,9 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-      <div className="bg-black py-3 w-full text-center text-white">
+      <h4 className="bg-black py-3 w-full text-center text-white">
         copyright
-      </div>
+      </h4>
     </footer>
   );
 }
