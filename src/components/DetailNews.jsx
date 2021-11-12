@@ -10,7 +10,7 @@ import {
 import Layout from './Layout';
 
 // utils
-import { UseNewsCategoryName, formatDate } from '../utils';
+import { formatDate } from '../utils';
 
 export default function DetailNews() {
   const detailNews = useSelector((state) => state.news.data?.detailNewsResult);
@@ -19,7 +19,7 @@ export default function DetailNews() {
     <Layout>
       <h5 className="my-5">
         <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold inline-block">
-          <UseNewsCategoryName />
+          {detailNews?.source.name}
         </span>
       </h5>
       <h1 className="oswald font-bold text-3xl xs:text-5xl text-gray-900">

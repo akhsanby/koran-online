@@ -4,7 +4,9 @@ import { BookmarkIcon } from './icon';
 
 // utils
 import {
-  UseNewsCategoryName, formatDate, handleRedirectToDetailNews, handleBookmarkAndUnBookmark,
+  formatDate, 
+  handleRedirectToDetailNews, 
+  handleBookmarkAndUnBookmark,
 } from '../utils';
 
 // redux
@@ -35,7 +37,7 @@ export default function NewsCard2xl({ oneArticle, router }) {
       </button>
       <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black via-gray-900/75 cursor-pointer" onClick={() => handleRedirectToDetailNews(dispatch, router, oneArticle)}>
         <p className="font-extrabold uppercase text-sm mt-2 text-green-400">
-          <UseNewsCategoryName />
+          {oneArticle?.source.name}
           {' '}
           <span className="font-medium text-white">
             /

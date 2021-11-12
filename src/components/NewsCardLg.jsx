@@ -4,7 +4,6 @@ import { BookmarkIcon } from './icon';
 
 // utils
 import {
-  UseNewsCategoryName,
   formatDate,
   handleRedirectToDetailNews,
   handleBookmarkAndUnBookmark,
@@ -36,7 +35,7 @@ export default function NewsCardLg({ article, router }) {
       </div>
       <div className="cursor-pointer" onClick={() => handleRedirectToDetailNews(dispatch, router, article)}>
         <p className="font-extrabold uppercase text-xs lg:text-sm mt-2 mb-1 lg:mb-0">
-          <UseNewsCategoryName />
+          {article?.source.name}
           {' '}
           <span className="font-medium">
             /

@@ -19,7 +19,7 @@ import {
 } from '../features/news-slice';
 
 // utils
-import { getNewsDataFromState, UseNewsCategoryName } from '../utils';
+import { getNewsDataFromState } from '../utils';
 
 export default function Home() {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function Home() {
         <div className="sm:w-1/3 md:w-auto lg:flex-1 relative mt-5 lg:mt-0">
           <h5 className="flex justify-center absolute top-0 w-full">
             <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold">
-              <UseNewsCategoryName />
+              <UseNewsCategoryName router={router}/>
             </span>
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
@@ -67,3 +67,12 @@ export default function Home() {
     </Layout>
   );
 }
+
+const UseNewsCategoryName = ({ router }) => {
+  if (router.pathname === '/' || router.pathname === '/indonesia/[detail]') return 'Indonesia';
+  if (router.pathname === '/programming' || router.pathname === '/programming/[detail]') return 'Programming';
+  if (router.pathname === '/covid19' || router.pathname === '/covid19/[detail]') return 'Covid 19';
+  if (router.pathname === '/entertainment' || router.pathname === '/entertainment/[detail]') return 'Entertainment';
+  if (router.pathname === '/sports' || router.pathname === '/sports/[detail]') return 'Sports';
+  if (router.pathname === '/technology' || router.pathname === '/technology/[detail]') return 'Technology';
+};
