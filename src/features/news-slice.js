@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const apiUrl = {
-  indo: 'https://newsapi.org/v2/top-headlines?country=id&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  programming: 'https://newsapi.org/v2/everything?q=programming&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  covid19: 'https://newsapi.org/v2/everything?q=covid19&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  entertainment: 'https://newsapi.org/v2/top-headlines?country=id&category=entertainment&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  sports: 'https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  technology: 'https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
-  byKeyword: 'https://newsapi.org/v2/everything?apiKey=878e17c0f1c041ffa642af8bd9c78ca7',
+  indo: `https://newsapi.org/v2/top-headlines?country=id&apiKey=${process.env.apiKey}`,
+  programming: `https://newsapi.org/v2/everything?q=programming&apiKey=${process.env.apiKey}`,
+  covid19: `https://newsapi.org/v2/everything?q=covid19&apiKey=${process.env.apiKey}`,
+  entertainment: `https://newsapi.org/v2/top-headlines?country=id&category=entertainment&apiKey=${process.env.apiKey}`,
+  sports: `https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=${process.env.apiKey}`,
+  technology: `https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=${process.env.apiKey}`,
+  byKeyword: `https://newsapi.org/v2/everything?apiKey=${process.env.apiKey}`,
 };
 
 export const fetchNewsIndonesia = createAsyncThunk(

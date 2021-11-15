@@ -1,8 +1,8 @@
 // components
-import { useSelector } from 'react-redux';
 import Layout from '../src/components/Layout';
 
 // redux
+import { useSelector } from 'react-redux';
 
 export default function Saved() {
   const savedNews = useSelector((state) => state.news.data.saved);
