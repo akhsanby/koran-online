@@ -1,98 +1,34 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-const apiUrl = {
-  indo: `https://newsapi.org/v2/top-headlines?country=id&apiKey=${process.env.apiKey}`,
-  programming: `https://newsapi.org/v2/everything?q=programming&apiKey=${process.env.apiKey}`,
-  covid19: `https://newsapi.org/v2/everything?q=covid19&apiKey=${process.env.apiKey}`,
-  entertainment: `https://newsapi.org/v2/top-headlines?country=id&category=entertainment&apiKey=${process.env.apiKey}`,
-  sports: `https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=${process.env.apiKey}`,
-  technology: `https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=${process.env.apiKey}`,
-  byKeyword: `https://newsapi.org/v2/everything?apiKey=${process.env.apiKey}`,
-};
-
-export const fetchNewsIndonesia = createAsyncThunk(
-  'news/fetchNewsIndonesia',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.indo);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
-
-export const fetchNewsProgramming = createAsyncThunk(
-  'news/fetchNewsProgramming',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.programming);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
-
-export const fetchNewsCovid19 = createAsyncThunk(
-  'news/fetchNewsCovid19',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.covid19);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
-
-export const fetchNewsEntertainment = createAsyncThunk(
-  'news/fetchNewsEntertainment',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.entertainment);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
-
-export const fetchNewsSports = createAsyncThunk(
-  'news/fetchNewsSports',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.sports);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
-
-export const fetchNewsTechnology = createAsyncThunk(
-  'news/fetchNewsTechnology',
-  async () => {
-    try {
-      const response = await fetch(apiUrl.technology);
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-);
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchNewsByKeyword = createAsyncThunk(
-  'news/fetchNewsByKeyword',
+  "news/fetchNewsByKeyword",
   async (keyword, thunkAPI) => {
     try {
+      const urlWithKeyword = `https://newsapi.org/v2/everything?apiKey=${process.env.apiKey}`;
       thunkAPI.dispatch(setSearchKeyword(keyword));
-      const response = await fetch(apiUrl.byKeyword.concat(`&q=${keyword}`));
+      const response = await fetch(urlWithKeyword.concat(`&q=${keyword}`));
       return await response.json();
     } catch (err) {
       throw new Error(err);
     }
-  },
+  }
+);
+
+export const fetchNewsDataFromAPI = createAsyncThunk(
+  "news/fetchNewsDataFromAPI",
+  async (args) => {
+    try {
+      const { pathname, url } = args;
+      const response = await fetch(url);
+      const result = await response.json();
+      return {
+        pathname,
+        result,
+      };
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 );
 
 const initialState = {
@@ -113,13 +49,17 @@ const initialState = {
 };
 
 export const newsSlice = createSlice({
-  name: 'news',
+  name: "news",
   initialState,
   reducers: {
     saveThisNews: (state, action) => {
-      const dataToFind = state.data.saved.find((item) => item.article.title === action.payload.article.title);
+      const dataToFind = state.data.saved.find(
+        (item) => item.article.title === action.payload.article.title
+      );
       if (dataToFind) {
-        const filtered = state.data.saved.filter((item) => item.article.title !== dataToFind.article.title);
+        const filtered = state.data.saved.filter(
+          (item) => item.article.title !== dataToFind.article.title
+        );
         state.data.saved = filtered;
       } else {
         state.data.saved.push(action.payload);
@@ -136,81 +76,28 @@ export const newsSlice = createSlice({
     },
   },
   extraReducers: {
-    // indonesia
-    [fetchNewsIndonesia.pending]: (state) => {
+    // search by pathname
+    [fetchNewsDataFromAPI.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [fetchNewsIndonesia.fulfilled]: (state, action) => {
-      state.data.indonesia = action.payload;
+    [fetchNewsDataFromAPI.fulfilled]: (state, action) => {
+      if (action.payload.pathname === "/") {
+        state.data.indonesia = action.payload.result;
+      } else if (action.payload.pathname === "/programming") {
+        state.data.programming = action.payload.result;
+      } else if (action.payload.pathname === "/covid19") {
+        state.data.covid19 = action.payload.result;
+      } else if (action.payload.pathname === "/entertainment") {
+        state.data.entertainment = action.payload.result;
+      } else if (action.payload.pathname === "/sport") {
+        state.data.sport = action.payload.result;
+      } else if (action.payload.pathname === "/technology") {
+        state.data.technology = action.payload.result;
+      }
       state.loading = false;
     },
-    [fetchNewsIndonesia.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    },
-    // programming
-    [fetchNewsProgramming.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [fetchNewsProgramming.fulfilled]: (state, action) => {
-      state.data.programming = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsProgramming.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    },
-    // covid19
-    [fetchNewsCovid19.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [fetchNewsCovid19.fulfilled]: (state, action) => {
-      state.data.covid19 = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsCovid19.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    },
-    // entertainment
-    [fetchNewsEntertainment.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [fetchNewsEntertainment.fulfilled]: (state, action) => {
-      state.data.entertainment = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsEntertainment.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    },
-    // sports
-    [fetchNewsSports.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [fetchNewsSports.fulfilled]: (state, action) => {
-      state.data.sports = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsSports.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    },
-    // technology
-    [fetchNewsTechnology.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [fetchNewsTechnology.fulfilled]: (state, action) => {
-      state.data.technology = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsTechnology.rejected]: (state, action) => {
+    [fetchNewsDataFromAPI.rejected]: (state, action) => {
       state.error = action.error.message;
       state.loading = false;
     },
@@ -231,7 +118,10 @@ export const newsSlice = createSlice({
 });
 
 export const {
-  saveThisNews, setSearchKeyword, removeLastNewsData, addDetailNewsOnClick,
+  saveThisNews,
+  setSearchKeyword,
+  removeLastNewsData,
+  addDetailNewsOnClick,
 } = newsSlice.actions;
 
 export default newsSlice.reducer;
