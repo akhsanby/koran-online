@@ -26,8 +26,9 @@ export default function NewsCardLg({ article, router }) {
           alt="random-pic"
           layout="fill"
           objectFit="cover"
-          src={`/api/imageproxy?url=${encodeURIComponent(article?.urlToImage)}` || 'https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/airplane.jpg'}
+          src={`/api/imageproxy?url=${encodeURIComponent(article?.urlToImage)}` || null}
           className="group-hover:opacity-80 duration-300"
+          
         />
         <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center" onClick={() => handleBookmarkAndUnBookmark(dispatch, article)}>
           <IconBookmarkOrUnBookmark />
