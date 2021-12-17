@@ -1,7 +1,10 @@
-import MainContent from '../../src/components/MainContent';
+import Layout from "../../src/components/Layout";
+import MainContent from "../../src/components/MainContent";
 
 export default function Entertainment() {
   return (
-    <MainContent />
+    <Layout title="News | Entertainment">
+      <MainContent />
+    </Layout>
   );
 }

@@ -1,7 +1,10 @@
-import MainContent from '../../src/components/MainContent';
+import Layout from "../../src/components/Layout";
+import MainContent from "../../src/components/MainContent";
 
 export default function Covid19() {
   return (
-    <MainContent />
+    <Layout title="News | Covid 19">
+      <MainContent />
+    </Layout>
   );
 }
