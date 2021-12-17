@@ -1,10 +1,10 @@
 import Layout from "../../src/components/Layout";
 import MainContent from "../../src/components/MainContent";
 
-export default function Covid19() {
+export default function Technology() {
   return (
-    <Layout title="News | Covid 19">
-      <MainContent />
+    <Layout title="News | Technology">
+      <MainContent categoryName="Technology" />
     </Layout>
   );
 }
