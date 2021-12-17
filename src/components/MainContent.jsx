@@ -7,65 +7,22 @@ import NewsCardLg from "./NewsCardLg";
 import NewsCardXl from "./NewsCardXl";
 import NewsCard2xl from "./NewsCard2xl";
 
-// redux
-import { fetchNewsDataFromAPI } from "../features/news-slice";
-
 // utils
-import { getNewsDataFromState } from "../utils";
-
-// api url
-const apiUrl = {
-  indonesia: `https://newsapi.org/v2/top-headlines?country=id&apiKey=${process.env.apiKey}`,
-  programming: `https://newsapi.org/v2/everything?q=programming&apiKey=${process.env.apiKey}`,
-  covid19: `https://newsapi.org/v2/everything?q=covid19&apiKey=${process.env.apiKey}`,
-  entertainment: `https://newsapi.org/v2/top-headlines?country=id&category=entertainment&apiKey=${process.env.apiKey}`,
-  sports: `https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=${process.env.apiKey}`,
-  technology: `https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=${process.env.apiKey}`,
-  byKeyword: `https://newsapi.org/v2/everything?apiKey=${process.env.apiKey}`,
-};
+import {
+  apiUrl,
+  getNewsDataFromState,
+  fetchNewsFromApiByCategory,
+} from "../utils";
 
 export default function MainContent({ categoryName }) {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const newsData = getNewsDataFromState(useSelector, router);
-
-  const fetchNewsFromApiByPathname = () => {
-    if (router.pathname === "/")
-      dispatch(fetchNewsDataFromAPI({ pathname: "/", url: apiUrl.indonesia }));
-    if (router.pathname === "/programming")
-      dispatch(
-        fetchNewsDataFromAPI({
-          pathname: "/programming",
-          url: apiUrl.programming,
-        })
-      );
-    if (router.pathname === "/covid19")
-      dispatch(
-        fetchNewsDataFromAPI({ pathname: "/covid19", url: apiUrl.covid19 })
-      );
-    if (router.pathname === "/entertainment")
-      dispatch(
-        fetchNewsDataFromAPI({
-          pathname: "/entertainment",
-          url: apiUrl.entertainment,
-        })
-      );
-    if (router.pathname === "/sports")
-      dispatch(
-        fetchNewsDataFromAPI({ pathname: "/sports", url: apiUrl.sports })
-      );
-    if (router.pathname === "/technology")
-      dispatch(
-        fetchNewsDataFromAPI({
-          pathname: "/technology",
-          url: apiUrl.technology,
-        })
-      );
-  };
+  // after fetching data, it will get the data from state by categoryName
+  const newsData = getNewsDataFromState(useSelector, categoryName);
 
   useEffect(() => {
-    fetchNewsFromApiByPathname();
+    fetchNewsFromApiByCategory(dispatch, categoryName, apiUrl);
   }, []);
 
   return (
