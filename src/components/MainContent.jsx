@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 // components
 import { useSelector, useDispatch } from "react-redux";
-import Layout from "./Layout";
 import NewsCardLg from "./NewsCardLg";
 import NewsCardXl from "./NewsCardXl";
 import NewsCard2xl from "./NewsCard2xl";
@@ -32,18 +31,37 @@ export default function Home() {
   const newsData = getNewsDataFromState(useSelector, router);
 
   const fetchNewsFromApiByPathname = () => {
-    if (router.pathname === "/") 
+    if (router.pathname === "/")
       dispatch(fetchNewsDataFromAPI({ pathname: "/", url: apiUrl.indonesia }));
-    if (router.pathname === "/programming") 
-      dispatch(fetchNewsDataFromAPI({ pathname: "/programming", url: apiUrl.programming }));
-    if (router.pathname === "/covid19") 
-      dispatch(fetchNewsDataFromAPI({ pathname: "/covid19", url: apiUrl.covid19 }));
-    if (router.pathname === "/entertainment") 
-      dispatch(fetchNewsDataFromAPI({ pathname: "/entertainment", url: apiUrl.entertainment }));
-    if (router.pathname === "/sports") 
-      dispatch(fetchNewsDataFromAPI({ pathname: "/sports", url: apiUrl.sports }));
-    if (router.pathname === "/technology") 
-      dispatch(fetchNewsDataFromAPI({ pathname: "/technology", url: apiUrl.technology }));
+    if (router.pathname === "/programming")
+      dispatch(
+        fetchNewsDataFromAPI({
+          pathname: "/programming",
+          url: apiUrl.programming,
+        })
+      );
+    if (router.pathname === "/covid19")
+      dispatch(
+        fetchNewsDataFromAPI({ pathname: "/covid19", url: apiUrl.covid19 })
+      );
+    if (router.pathname === "/entertainment")
+      dispatch(
+        fetchNewsDataFromAPI({
+          pathname: "/entertainment",
+          url: apiUrl.entertainment,
+        })
+      );
+    if (router.pathname === "/sports")
+      dispatch(
+        fetchNewsDataFromAPI({ pathname: "/sports", url: apiUrl.sports })
+      );
+    if (router.pathname === "/technology")
+      dispatch(
+        fetchNewsDataFromAPI({
+          pathname: "/technology",
+          url: apiUrl.technology,
+        })
+      );
   };
 
   useEffect(() => {
@@ -51,7 +69,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className="flex flex-col-reverse sm:flex-row md:flex-col-reverse lg:flex-row sm:space-x-4 md:space-x-0 lg:space-x-6">
         <div className="sm:w-1/3 md:w-auto lg:flex-1 relative mt-5 lg:mt-0">
           <h5 className="flex justify-center absolute top-0 w-full">
@@ -74,7 +92,7 @@ export default function Home() {
           <NewsCardXl key={index} article={article} router={router} />
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 

@@ -1,22 +1,21 @@
-import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import Image from "next/image";
+import { useSelector } from "react-redux";
 import {
   FacebookIcon,
   MailIcon,
   PinterestIcon,
   TwitterIcon,
   WhatsappIcon,
-} from './icon';
-import Layout from './Layout';
+} from "./icon";
 
 // utils
-import { formatDate } from '../utils';
+import { formatDate } from "../utils";
 
 export default function DetailNews() {
   const detailNews = useSelector((state) => state.news.data?.detailNewsResult);
 
   return (
-    <Layout>
+    <>
       <h5 className="my-5">
         <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold inline-block">
           {detailNews?.source.name}
@@ -36,9 +35,7 @@ export default function DetailNews() {
             {formatDate(detailNews?.publishedAt)}
           </p>
           <p>
-            By
-            {' '}
-            <b className="text-gray-900 font-bold">{detailNews?.author}</b>
+            By <b className="text-gray-900 font-bold">{detailNews?.author}</b>
           </p>
         </div>
       </div>
@@ -47,7 +44,12 @@ export default function DetailNews() {
           alt="random-pic"
           layout="fill"
           objectFit="cover"
-          src={`/api/imageproxy?url=${encodeURIComponent(detailNews?.urlToImage)}` || 'https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg'}
+          src={
+            `/api/imageproxy?url=${encodeURIComponent(
+              detailNews?.urlToImage
+            )}` ||
+            "https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"
+          }
         />
       </div>
       <div className="xs:flex space-x-3 my-5">
@@ -70,34 +72,34 @@ export default function DetailNews() {
           </p>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 
 const socialMedias = [
   {
-    name: 'facebook',
+    name: "facebook",
     icon: <FacebookIcon />,
-    color: 'bg-[#3b5998]',
+    color: "bg-[#3b5998]",
   },
   {
-    name: 'twitter',
+    name: "twitter",
     icon: <TwitterIcon />,
-    color: 'bg-[#00acee]',
+    color: "bg-[#00acee]",
   },
   {
-    name: 'pinterest',
+    name: "pinterest",
     icon: <PinterestIcon />,
-    color: 'bg-[#c8232c]',
+    color: "bg-[#c8232c]",
   },
   {
-    name: 'mail',
+    name: "mail",
     icon: <MailIcon />,
-    color: 'bg-gray-400',
+    color: "bg-gray-400",
   },
   {
-    name: 'whatsapp',
+    name: "whatsapp",
     icon: <WhatsappIcon />,
-    color: 'bg-[#075E54]',
+    color: "bg-[#075E54]",
   },
 ];

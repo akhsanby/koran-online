@@ -1,18 +1,13 @@
-import Head from 'next/head'
-import Footer from './Footer';
-import Header from './Header';
-import HotNews from './HotNews';
-import { useRouter } from 'next/router'
+import Head from "next/head";
+import Footer from "./Footer";
+import Header from "./Header";
+import HotNews from "./HotNews";
 
-import { setNewsTitlePage } from '../utils'
-
-export default function Layout({ children }) {
-  const router = useRouter()
-  
+export default function Layout({ children, title }) {
   return (
     <div className="text-gray-700 roboto min-h-screen">
       <Head>
-        <title>{setNewsTitlePage(router)}</title>
+        <title>{title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
