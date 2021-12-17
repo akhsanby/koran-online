@@ -1,12 +1,15 @@
+// utils
+import { apiUrl } from "../utils";
+
+// redux
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchNewsByKeyword = createAsyncThunk(
   "news/fetchNewsByKeyword",
   async (keyword, thunkAPI) => {
     try {
-      const urlWithKeyword = `https://newsapi.org/v2/everything?apiKey=${process.env.apiKey}`;
       thunkAPI.dispatch(setSearchKeyword(keyword));
-      const response = await fetch(urlWithKeyword.concat(`&q=${keyword}`));
+      const response = await fetch(apiUrl.byKeyword.concat(`&q=${keyword}`));
       return await response.json();
     } catch (err) {
       throw new Error(err);
@@ -18,11 +21,11 @@ export const fetchNewsDataFromAPI = createAsyncThunk(
   "news/fetchNewsDataFromAPI",
   async (args) => {
     try {
-      const { pathname, url } = args;
+      const { category, url } = args;
       const response = await fetch(url);
       const result = await response.json();
       return {
-        pathname,
+        category,
         result,
       };
     } catch (err) {
@@ -82,17 +85,17 @@ export const newsSlice = createSlice({
       state.error = null;
     },
     [fetchNewsDataFromAPI.fulfilled]: (state, action) => {
-      if (action.payload.pathname === "/") {
+      if (action.payload.category === "Indonesia") {
         state.data.indonesia = action.payload.result;
-      } else if (action.payload.pathname === "/programming") {
+      } else if (action.payload.category === "Programming") {
         state.data.programming = action.payload.result;
-      } else if (action.payload.pathname === "/covid19") {
+      } else if (action.payload.category === "Covid 19") {
         state.data.covid19 = action.payload.result;
-      } else if (action.payload.pathname === "/entertainment") {
+      } else if (action.payload.category === "Entertainment") {
         state.data.entertainment = action.payload.result;
-      } else if (action.payload.pathname === "/sport") {
+      } else if (action.payload.category === "Sport") {
         state.data.sport = action.payload.result;
-      } else if (action.payload.pathname === "/technology") {
+      } else if (action.payload.category === "Technology") {
         state.data.technology = action.payload.result;
       }
       state.loading = false;

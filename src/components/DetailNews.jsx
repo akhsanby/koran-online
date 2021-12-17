@@ -47,8 +47,7 @@ export default function DetailNews() {
           src={
             `/api/imageproxy?url=${encodeURIComponent(
               detailNews?.urlToImage
-            )}` ||
-            "https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"
+            )}` || null
           }
         />
       </div>
