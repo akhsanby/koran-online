@@ -26,3 +26,6 @@ ReactJS dan library-library pendukungnya, yang digunakan pada repo ini yaitu
 
 ## UI Framework
 Bebas, UI pada slide hanyalah contoh, silakan berkreasi
+
+## Preview
+![Preview App](/public/preview/ss1.png)
