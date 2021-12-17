@@ -76,7 +76,7 @@ export const handleRedirectToDetailNews = (dispatch, router, article) => {
   if (router.pathname === "/sports") router.push(`/sports/${article.title}`);
   if (router.pathname === "/technology")
     router.push(`/technology/${article.title}`);
-  if (router.pathname === "/search" && query.keyword)
+  if (router.pathname === "/search" && router.query.keyword)
     router.push(`/search/${article.title}`);
 };
 
