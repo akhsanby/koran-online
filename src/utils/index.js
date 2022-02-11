@@ -1,5 +1,5 @@
-// redux
-import { fetchNewsDataFromAPI } from "../features/news-slice";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 // api url
 export const apiUrl = {
@@ -12,73 +12,57 @@ export const apiUrl = {
   byKeyword: `${process.env.BASE_URL}/everything?apiKey=${process.env.API_KEY}`,
 };
 
-// redux
-import { saveThisNews, addDetailNewsOnClick } from "../features/news-slice";
-
-export function getNewsDataFromState(useSelector, categoryName) {
-  return useSelector((state) => {
-    if (categoryName === "Programming") return state.news.data?.programming;
-    if (categoryName === "Covid 19") return state.news.data?.covid19;
-    if (categoryName === "Entertainment") return state.news.data?.entertainment;
-    if (categoryName === "Sports") return state.news.data?.covid19;
-    if (categoryName === "Technology") return state.news.data?.technology;
-    return state.news.data?.indonesia;
-  });
-}
-
-export const fetchNewsFromApiByCategory = (dispatch, category, apiUrl) => {
-  if (category === "Indonesia")
-    dispatch(
-      fetchNewsDataFromAPI({ category: "Indonesia", url: apiUrl.indonesia })
-    );
-  if (category === "Programming")
-    dispatch(
-      fetchNewsDataFromAPI({
-        category: "Programming",
-        url: apiUrl.programming,
-      })
-    );
-  if (category === "Covid 19")
-    dispatch(
-      fetchNewsDataFromAPI({ category: "Covid 19", url: apiUrl.covid19 })
-    );
-  if (category === "Entertainment")
-    dispatch(
-      fetchNewsDataFromAPI({
-        category: "Entertainment",
-        url: apiUrl.entertainment,
-      })
-    );
-  if (category === "Sports")
-    dispatch(fetchNewsDataFromAPI({ category: "Sports", url: apiUrl.sports }));
-  if (category === "Technology")
-    dispatch(
-      fetchNewsDataFromAPI({
-        category: "Technology",
-        url: apiUrl.technology,
-      })
-    );
-};
-
 export function formatDate(value) {
   const date = value === undefined ? null : new Date(value);
   return new Intl.DateTimeFormat("en-GB", { dateStyle: "long" }).format(date);
 }
 
-export const handleRedirectToDetailNews = (dispatch, router, article) => {
-  dispatch(addDetailNewsOnClick(article));
-  if (router.pathname === "/") router.push(`/indonesia/${article.title}`);
-  if (router.pathname === "/programming")
-    router.push(`/programming/${article.title}`);
-  if (router.pathname === "/covid19") router.push(`/covid19/${article.title}`);
-  if (router.pathname === "/entertainment")
-    router.push(`/entertainment/${article.title}`);
-  if (router.pathname === "/sports") router.push(`/sports/${article.title}`);
-  if (router.pathname === "/technology")
-    router.push(`/technology/${article.title}`);
-  if (router.pathname === "/search" && router.query.keyword)
-    router.push(`/search/${article.title}`);
+export async function fetchNewsIndonesia() {
+  const response = await fetch(apiUrl.indonesia).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsProgramming() {
+  const response = await fetch(apiUrl.programming).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsCovid19() {
+  const response = await fetch(apiUrl.covid19).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsEntertainment() {
+  const response = await fetch(apiUrl.entertainment).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsSports() {
+  const response = await fetch(apiUrl.sports).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsTechnology() {
+  const response = await fetch(apiUrl.technology).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export async function fetchNewsByKeyword(keyword) {
+  const response = await fetch(apiUrl.byKeyword.concat(`&q=${keyword}`)).catch((error) => console.log("Error :" + error));
+  return await response.json();
+}
+
+export const isNewsSaved = (news) => {
+  const savedNews = useSelector((state) => state.news.data.saved);
+  return savedNews.some((item) => item.title === news.title);
 };
 
-export const handleBookmarkAndUnBookmark = (dispatch, article) =>
-  dispatch(saveThisNews({ article }));
+export const href = (news) => {
+  const router = useRouter();
+  if (router.pathname === "/") return `/indonesia/${news?.title}`;
+  if (router.pathname === "/programming") return `/programming/${news?.title}`;
+  if (router.pathname === "/covid19") return `/covid19/${news?.title}`;
+  if (router.pathname === "/entertainment") return `/entertainment/${news?.title}`;
+  if (router.pathname === "/sports") return `/sports/${news?.title}`;
+  if (router.pathname === "/technology") return `/technology/${news?.title}`;
+};

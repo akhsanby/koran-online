@@ -9,10 +9,8 @@ export default function Saved() {
 
   return (
     <Layout title="Saved News">
-      <h1 className="text-3xl font-bold oswald border-green-300 border-b-4 py-4 uppercase text-gray-800">
-        saved
-      </h1>
-      {(savedNews.length > 0 && (
+      <h1 className="text-3xl font-bold oswald border-green-300 border-b-4 py-4 uppercase text-gray-800">saved</h1>
+      {savedNews.length > 0 ? (
         <div className="overflow-auto">
           <div className="w-[640px] sm:w-full">
             <table className="w-full mt-4">
@@ -24,31 +22,26 @@ export default function Saved() {
                 </tr>
               </thead>
               <tbody>
-                {savedNews.map((item, index) => (
+                {savedNews.map((news, index) => (
                   <tr key={index} className="odd:bg-gray-100">
                     <td className="p-3 w-[14rem]">
                       <div>
-                        {item.article?.source?.name} - {item.article?.author}
+                        {news.source?.name} - {news.author}
                       </div>
-                      <a
-                        className="no-underline hover:underline"
-                        href={item.article?.url}
-                      >
+                      <a className="no-underline hover:underline" href={news.url}>
                         News Page
                       </a>
                     </td>
-                    <td className="p-3 w-[14rem] ">{item.article?.title}</td>
-                    <td className="p-3">{item.article?.description}</td>
+                    <td className="p-3 w-[14rem] ">{news.title}</td>
+                    <td className="p-3">{news.description}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-      )) || (
-        <h3 className="mt-4 text-left font-bold oswald text-2xl">
-          No saved news
-        </h3>
+      ) : (
+        <h3 className="mt-4 text-left font-bold oswald text-2xl">No saved news</h3>
       )}
     </Layout>
   );

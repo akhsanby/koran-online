@@ -14,7 +14,7 @@ const store = configureStore({
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <NextNProgress />
+      <NextNProgress color="#34d399" options={{ showSpinner: false }} />
       <Component {...pageProps} />
     </Provider>
   );
