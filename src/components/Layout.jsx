@@ -9,6 +9,7 @@ export default function Layout({ children, title }) {
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <Header />
       <div className="px-1 sm:px-4 md:px-0 md:w-11/12 mx-auto mt-2 mb-10 md:flex space-x-6">
