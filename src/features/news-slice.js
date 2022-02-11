@@ -1,38 +1,5 @@
-// utils
-import { apiUrl } from "../utils";
-
 // redux
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-export const fetchNewsByKeyword = createAsyncThunk(
-  "news/fetchNewsByKeyword",
-  async (keyword, thunkAPI) => {
-    try {
-      thunkAPI.dispatch(setSearchKeyword(keyword));
-      const response = await fetch(apiUrl.byKeyword.concat(`&q=${keyword}`));
-      return await response.json();
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-);
-
-export const fetchNewsDataFromAPI = createAsyncThunk(
-  "news/fetchNewsDataFromAPI",
-  async (args) => {
-    try {
-      const { category, url } = args;
-      const response = await fetch(url);
-      const result = await response.json();
-      return {
-        category,
-        result,
-      };
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: {
@@ -44,11 +11,8 @@ const initialState = {
     technology: {},
     saved: [],
     searchResult: {},
-    detailNewsResult: {},
+    detailNews: {},
   },
-  keyword: null,
-  loading: false,
-  error: null,
 };
 
 export const newsSlice = createSlice({
@@ -56,75 +20,44 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     saveThisNews: (state, action) => {
-      const dataToFind = state.data.saved.find(
-        (item) => item.article.title === action.payload.article.title
-      );
-      if (dataToFind) {
-        const filtered = state.data.saved.filter(
-          (item) => item.article.title !== dataToFind.article.title
-        );
+      const findSavedNews = state.data.saved.find((item) => item.title === action.payload.title);
+      if (findSavedNews) {
+        const filtered = state.data.saved.filter((item) => item.title !== findSavedNews.title);
         state.data.saved = filtered;
       } else {
         state.data.saved.push(action.payload);
       }
     },
-    setSearchKeyword: (state, action) => {
-      state.keyword = action.payload;
-    },
     removeLastNewsData: (state) => {
       state.data.searchResult = {};
     },
-    addDetailNewsOnClick: (state, action) => {
-      state.data.detailNewsResult = action.payload;
+    addDetailNews: (state, action) => {
+      state.data.detailNews = action.payload;
     },
-  },
-  extraReducers: {
-    // search by pathname
-    [fetchNewsDataFromAPI.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
+    addNewsIndonesia: (state, action) => {
+      state.data.indonesia = action.payload;
     },
-    [fetchNewsDataFromAPI.fulfilled]: (state, action) => {
-      if (action.payload.category === "Indonesia") {
-        state.data.indonesia = action.payload.result;
-      } else if (action.payload.category === "Programming") {
-        state.data.programming = action.payload.result;
-      } else if (action.payload.category === "Covid 19") {
-        state.data.covid19 = action.payload.result;
-      } else if (action.payload.category === "Entertainment") {
-        state.data.entertainment = action.payload.result;
-      } else if (action.payload.category === "Sport") {
-        state.data.sport = action.payload.result;
-      } else if (action.payload.category === "Technology") {
-        state.data.technology = action.payload.result;
-      }
-      state.loading = false;
+    addNewsProgramming: (state, action) => {
+      state.data.programming = action.payload;
     },
-    [fetchNewsDataFromAPI.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
+    addNewsCovid19: (state, action) => {
+      state.data.covid19 = action.payload;
     },
-    // search by keyword
-    [fetchNewsByKeyword.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
+    addNewsEntertainment: (state, action) => {
+      state.data.entertainment = action.payload;
     },
-    [fetchNewsByKeyword.fulfilled]: (state, action) => {
+    addNewsSports: (state, action) => {
+      state.data.sports = action.payload;
+    },
+    addNewsTechnology: (state, action) => {
+      state.data.technology = action.payload;
+    },
+    addNewsByKeyword: (state, action) => {
       state.data.searchResult = action.payload;
-      state.loading = false;
-    },
-    [fetchNewsByKeyword.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
     },
   },
 });
 
-export const {
-  saveThisNews,
-  setSearchKeyword,
-  removeLastNewsData,
-  addDetailNewsOnClick,
-} = newsSlice.actions;
+export const { saveThisNews, isNewsSaved, removeLastNewsData, addDetailNews, addNewsIndonesia, addNewsProgramming, addNewsCovid19, addNewsEntertainment, addNewsSports, addNewsTechnology, addNewsByKeyword } = newsSlice.actions;
 
 export default newsSlice.reducer;
