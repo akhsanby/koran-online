@@ -1,28 +1,60 @@
-import Link from 'next/link';
-
-import { useRouter } from 'next/router';
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // redux
-import { useDispatch } from 'react-redux';
-import { MenuIcon, SearchIcon } from './icon';
-import { fetchNewsByKeyword, removeLastNewsData } from '../features/news-slice';
+import { MenuIcon, SearchIcon } from "./icon";
 
 export default function Navigation() {
   const router = useRouter();
-  const dispatch = useDispatch();
+  const [keyword, setKeyword] = useState("");
 
-  const handleSearchWithEnterPressed = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      dispatch(removeLastNewsData());
-      dispatch(fetchNewsByKeyword(e.target.value));
-      router.push({
-        pathname: '/search',
-        query: { keyword: e.target.value },
-      });
-      e.target.value = '';
+  const navs = [
+    {
+      text: "indonesia",
+      link: "/",
+      active: router.pathname === "/" || router.pathname === "/indonesia/[detail]" ? true : false,
+    },
+    {
+      text: "programming",
+      link: "/programming",
+      active: router.pathname === "/programming" || router.pathname === "/programming/[detail]" ? true : false,
+    },
+    {
+      text: "covid19",
+      link: "/covid19",
+      active: router.pathname === "/covid19" || router.pathname === "/covid19/[detail]" ? true : false,
+    },
+    {
+      text: "entertainment",
+      link: "/entertainment",
+      active: router.pathname === "/entertainment" || router.pathname === "/entertainment/[detail]" ? true : false,
+    },
+    {
+      text: "sports",
+      link: "/sports",
+      active: router.pathname === "/sports" || router.pathname === "/sports/[detail]" ? true : false,
+    },
+    {
+      text: "technology",
+      link: "/technology",
+      active: router.pathname === "/technology" || router.pathname === "/technology/[detail]" ? true : false,
+    },
+    {
+      text: "saved",
+      link: "/saved",
+      active: router.pathname === "/saved" || router.pathname === "/saved/[detail]" ? true : false,
+    },
+  ];
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!keyword) {
+      return alert("Keyword cannot empty!");
     }
-  };
+    router.push(`/search?keyword=${keyword}`);
+    setKeyword("");
+  }
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-lg py-2 lg:py-0">
@@ -34,57 +66,22 @@ export default function Navigation() {
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
-                <a className="uppercase pt-3 pb-1 block text-gray-600 border-b-4 border-transparent hover:border-green-300 oswald">
-                  {nav.text}
-                </a>
+                <a className={`uppercase pt-3 pb-1 block text-gray-600 border-b-4 ${nav.active ? "border-green-300" : "border-transparent"} hover:border-green-300 oswald`}>{nav.text}</a>
               </Link>
             </li>
           ))}
         </ul>
         <div className="flex-1 h-full flex items-center justify-end">
           <div className="inline-block relative">
-            <input
-              placeholder="search"
-              className="border rounded-xl px-3 w-40"
-              onKeyPress={handleSearchWithEnterPressed}
-            />
-            <div className="absolute right-2 top-0 h-full flex items-center">
-              <SearchIcon />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <input placeholder="search" className="border rounded-xl px-3 w-40" value={keyword} onChange={(event) => setKeyword(event.target.value)} />
+              <button type="submit" className="absolute right-2 top-0 h-full flex items-center">
+                <SearchIcon />
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </nav>
   );
 }
-
-const navs = [
-  {
-    text: 'indonesia',
-    link: '/',
-  },
-  {
-    text: 'programming',
-    link: '/programming',
-  },
-  {
-    text: 'covid19',
-    link: '/covid19',
-  },
-  {
-    text: 'entertainment',
-    link: '/entertainment',
-  },
-  {
-    text: 'sports',
-    link: '/sports',
-  },
-  {
-    text: 'technology',
-    link: '/technology',
-  },
-  {
-    text: 'saved',
-    link: '/saved',
-  },
-];
