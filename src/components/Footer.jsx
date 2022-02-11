@@ -1,30 +1,15 @@
-import Link from 'next/link';
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  PinterestIcon,
-  TiktokIcon,
-  TumblrIcon,
-  TwitterIcon,
-  YoutubeIcon,
-} from './icon';
+import Link from "next/link";
+import { FacebookIcon, InstagramIcon, LinkedInIcon, PinterestIcon, TiktokIcon, TumblrIcon, TwitterIcon, YoutubeIcon } from "./icon";
 
 export default function Footer() {
   return (
     <footer className="bg-[#111111] flex flex-col items-center">
       <Link href="/">
-        <a className="flex-[3] text-4xl xs:text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">
-          koran online
-        </a>
+        <a className="flex-[3] text-4xl xs:text-6xl text-green-400 text-center oswald font-extrabold uppercase mt-7">koran online</a>
       </Link>
       <div className="space-x-1 xs:space-x-3 flex my-6 text-white">
         {socialMedias.map((e, i) => (
-          <a
-            key={i}
-            href="#"
-            className={`${e.color} rounded-full bg-gray-700 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center duration-150`}
-          >
+          <a key={i} href="#" className={`${e.color} rounded-full bg-gray-700 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center duration-150`}>
             {e.icon}
           </a>
         ))}
@@ -34,91 +19,87 @@ export default function Footer() {
           {navs.map((nav, i) => (
             <li key={i}>
               <Link href={nav.link}>
-                <a className="uppercase font-thin tracking-wider text-xs sm:text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
-                  {nav.text}
-                </a>
+                <a className="uppercase font-thin tracking-wider text-xs sm:text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">{nav.text}</a>
               </Link>
             </li>
           ))}
         </ul>
       </nav>
-      <h4 className="bg-black py-3 w-full text-center text-white">
-        copyright
-      </h4>
+      <h4 className="bg-black py-3 w-full text-center text-white">Copyright @2021 - Made by Akhsan & Alfirman</h4>
     </footer>
   );
 }
 
 const socialMedias = [
   {
-    name: 'facebook',
+    name: "facebook",
     icon: <FacebookIcon />,
-    color: 'hover:bg-[#3b5998]',
+    color: "hover:bg-[#3b5998]",
   },
   {
-    name: 'twitter',
+    name: "twitter",
     icon: <TwitterIcon />,
-    color: 'hover:bg-[#00acee]',
+    color: "hover:bg-[#00acee]",
   },
   {
-    name: 'pinterest',
+    name: "pinterest",
     icon: <PinterestIcon />,
-    color: 'hover:bg-[#c8232c]',
+    color: "hover:bg-[#c8232c]",
   },
   {
-    name: 'instagram',
+    name: "instagram",
     icon: <InstagramIcon />,
-    color: 'instagram-color',
+    color: "instagram-color",
   },
   {
-    name: 'tiktok',
+    name: "tiktok",
     icon: <TiktokIcon />,
-    color: 'hover:bg-[#000]',
+    color: "hover:bg-[#000]",
   },
   {
-    name: 'youtube',
+    name: "youtube",
     icon: <YoutubeIcon />,
-    color: 'hover:bg-[#FF0000]',
+    color: "hover:bg-[#FF0000]",
   },
   {
-    name: 'linkedIn',
+    name: "linkedIn",
     icon: <LinkedInIcon />,
-    color: 'hover:bg-[#0077b5]',
+    color: "hover:bg-[#0077b5]",
   },
   {
-    name: 'tumblr',
+    name: "tumblr",
     icon: <TumblrIcon />,
-    color: 'hover:bg-[#34526f]',
+    color: "hover:bg-[#34526f]",
   },
 ];
 
 const navs = [
   {
-    text: 'indonesia',
-    link: '/',
+    text: "indonesia",
+    link: "/",
   },
   {
-    text: 'programming',
-    link: '/programming',
+    text: "programming",
+    link: "/programming",
   },
   {
-    text: 'covid19',
-    link: '/covid19',
+    text: "covid19",
+    link: "/covid19",
   },
   {
-    text: 'entertainment',
-    link: '/entertainment',
+    text: "entertainment",
+    link: "/entertainment",
   },
   {
-    text: 'sports',
-    link: '/sports',
+    text: "sports",
+    link: "/sports",
   },
   {
-    text: 'technology',
-    link: '/technology',
+    text: "technology",
+    link: "/technology",
   },
   {
-    text: 'saved',
-    link: '/saved',
+    text: "saved",
+    link: "/saved",
   },
 ];
