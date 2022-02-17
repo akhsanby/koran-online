@@ -65,4 +65,5 @@ export const href = (news) => {
   if (router.pathname === "/entertainment") return `/entertainment/${news?.title}`;
   if (router.pathname === "/sports") return `/sports/${news?.title}`;
   if (router.pathname === "/technology") return `/technology/${news?.title}`;
+  if (router.pathname === "/search") return `/search/${news?.title}`;
 };
